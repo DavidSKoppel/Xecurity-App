@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Diagnostics;
 using Xecurity_App.Model;
 
-namespace Xecurity_App;
+namespace Xecurity_App.View;
 
 public partial class LoginPage : ContentPage
 {
@@ -29,14 +29,16 @@ public partial class LoginPage : ContentPage
 
         var url = "http://192.168.1.122:7032/api/Auth/login";
 
-        var response = await _client.PostAsync(url, data);
+        //var response = await _client.PostAsync(url, data);
 
-        string result = response.Content.ReadAsStringAsync().Result;
+        //string result = response.Content.ReadAsStringAsync().Result;
 
-        if(response.IsSuccessStatusCode)
-        {
-        }
-        await Application.Current.MainPage.DisplayAlert("Sent", result, "ok");
+        //if(response.IsSuccessStatusCode)
+        //{
+        //}
+        App.Current.MainPage = new NavigationPage(new MainMenuPage());
+
+        //await Application.Current.MainPage.DisplayAlert("Sent", result, "ok");
 
     } 
 }
