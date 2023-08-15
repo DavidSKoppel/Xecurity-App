@@ -22,23 +22,23 @@ public partial class LoginPage : ContentPage
         var username = UserEntry.Text;
         var password = PasswordEntry.Text;
 
-        var soundData = new PostUserLogin() { username = username, password = password };
+        var loginData = new PostUserLogin() { username = username, password = password };
 
-        var json = JsonSerializer.Serialize(soundData);
+        var json = JsonSerializer.Serialize(loginData);
         var data = new StringContent(json, Encoding.UTF8, "application/json");
 
         var url = "http://192.168.1.122:7032/api/Auth/login";
 
-        //var response = await _client.PostAsync(url, data);
+        var response = await _client.PostAsync(url, data);
 
-        //string result = response.Content.ReadAsStringAsync().Result;
+        string result = response.Content.ReadAsStringAsync().Result;
 
-        //if(response.IsSuccessStatusCode)
-        //{
-        //}
-        App.Current.MainPage = new NavigationPage(new MainMenuPage());
+        if(response.IsSuccessStatusCode)
+        {
+            App.Current.MainPage = new NavigationPage(new MainMenuPage());
+        }
 
-        //await Application.Current.MainPage.DisplayAlert("Sent", result, "ok");
+        await Application.Current.MainPage.DisplayAlert("Sent", result, "ok");
 
     } 
 }

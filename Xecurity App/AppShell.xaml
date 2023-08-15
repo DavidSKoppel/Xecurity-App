@@ -14,4 +14,8 @@
         Title="Main page"
         ContentTemplate="{DataTemplate local:MainMenuPage}"
         Route="MainPageMenu" />
+    <ShellContent
+        Title="Extend NFC-Chip Lease time"
+        ContentTemplate="{DataTemplate local:ExtendLeasePage}"
+        Route="ExtendLeasePage" />
 </Shell>

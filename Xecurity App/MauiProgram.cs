@@ -4,7 +4,7 @@ namespace Xecurity_App;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
+    public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
@@ -15,7 +15,6 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-
 		return builder.Build();
 	}
 }

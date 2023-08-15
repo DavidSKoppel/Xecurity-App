@@ -26,21 +26,16 @@ public partial class MainMenuPage : ContentPage
         });
     }
 
-    private async void Button_Clicked(object sender, EventArgs e)
+    private void Button_Clicked(object sender, EventArgs e)
     {
-        var request = new NotificationRequest
-        {
-            NotificationId = 1000,
-            Title = "Subscribe for me",
-            Subtitle = "Hello Friends",
-            Description = "Stay Tuned",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(5),
-                NotifyRepeatInterval = TimeSpan.FromDays(1)
-            }
-        };
-        await LocalNotificationCenter.Current.Show(request);
+#if ANDROID
+        Android.Content.Intent intent = new Android.Content.Intent(Android.App.Application.Context, typeof(Platforms.Android.AlertForegroundService));
+        Android.App.Application.Context.StartForegroundService(intent);
+#endif
+    }
+
+    private void Extend_Lease_Button(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new ExtendLeasePage());
     }
 }
