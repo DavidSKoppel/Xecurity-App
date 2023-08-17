@@ -8,5 +8,68 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding KeyCardHistories}" ItemSelected="ListView_KeyCardSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                               Grid.Row="0"
+                               Text="{Binding id}"
+                               FontAttributes="Bold" />
+                            <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding dateUploaded}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="0"
+                               Grid.Column="2"
+                               Text="{Binding status}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            <Image Grid.Row="2"
+                               Grid.Column="2"
+                               Source="{Binding imageData}"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding user}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding keyCardId}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding serverRoomName}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding locationName}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding AddressName}"
+                               FontAttributes="Italic"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

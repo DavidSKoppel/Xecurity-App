@@ -8,5 +8,6 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Image Source="http://192.168.1.122:5500/image/Security78086Cam0.jpg"/>
     </VerticalStackLayout>
 </ContentPage>

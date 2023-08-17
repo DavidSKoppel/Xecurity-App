@@ -10,6 +10,7 @@ public partial class LoginPage : ContentPage
 {
     HttpClient _client;
     JsonSerializerOptions _serializerOptions;
+    bool isbusy;
 
     public LoginPage()
 	{
@@ -18,28 +19,41 @@ public partial class LoginPage : ContentPage
 
     private async void OnCounterClicked(object sender, EventArgs e)
     {
-        _client = new HttpClient();
-        var username = UserEntry.Text;
-        var password = PasswordEntry.Text;
-
-        var loginData = new PostUserLogin() { username = username, password = password };
-
-        var json = JsonSerializer.Serialize(loginData);
-        var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-        var url = "http://192.168.1.122:7032/api/Auth/login";
-
-        var response = await _client.PostAsync(url, data);
-
-        string result = response.Content.ReadAsStringAsync().Result;
-
-        if(response.IsSuccessStatusCode)
+        try
         {
-            App.Current.MainPage = new NavigationPage(new MainMenuPage());
+            _client = new HttpClient();
+            var username = UserEntry.Text;
+            var password = PasswordEntry.Text;
+
+            var loginData = new PostUserLogin() { username = username, password = password };
+
+            var json = JsonSerializer.Serialize(loginData);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = "http://192.168.1.122:7032/api/Auth/login";
+
+            isbusy = true;
+            var response = await _client.PostAsync(url, data);
+            isbusy = false;
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                App.Current.MainPage = new NavigationPage(new MainMenuPage());
+            } 
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Wrong password or username", "ok");
+            }
+        } catch (Exception ex)
+        {
+
         }
+    }
+    private void isLoading() 
+    {
 
-        await Application.Current.MainPage.DisplayAlert("Sent", result, "ok");
-
-    } 
+    }
 }
 

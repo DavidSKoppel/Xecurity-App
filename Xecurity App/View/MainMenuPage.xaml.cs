@@ -9,33 +9,42 @@ public partial class MainMenuPage : ContentPage
 		InitializeComponent();
         Task.Run(async () =>
         {
-            var request = new NotificationRequest
-            {
-                NotificationId = 8008,
-                Title = "Alert",
-                Subtitle = "Attention",
-                Description = "Danger in server room",
-                BadgeNumber = 42,
-                CategoryType = NotificationCategoryType.Alarm,
-                Schedule = new NotificationRequestSchedule
-                {
-                    NotifyTime = DateTime.Now.AddSeconds(5),
-                }
-            };
-            await LocalNotificationCenter.Current.Show(request);
+#if ANDROID
+            Android.Content.Intent intent = new Android.Content.Intent(Android.App.Application.Context, typeof(Platforms.Android.AlertForegroundService));
+            Android.App.Application.Context.StartForegroundService(intent);
+#endif
         });
+    }
+
+    private async void CreateUpdateChip_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new CreateLeasePage());
+    }
+
+    private async void DisableChip_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new DisableNFCPage());
+    }
+
+    private async void ViewImage_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new PictureModePage());
+    }
+
+    private async void ViewLivestream_Clicked(object sender, EventArgs e)
+    {
+
+        Uri uri = new Uri("http://192.168.1.116:8081");
+        await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+    }
+
+    private async void CheckHistory_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new CheckInHistoryPage());
     }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-#if ANDROID
-        Android.Content.Intent intent = new Android.Content.Intent(Android.App.Application.Context, typeof(Platforms.Android.AlertForegroundService));
-        Android.App.Application.Context.StartForegroundService(intent);
-#endif
-    }
 
-    private void Extend_Lease_Button(object sender, EventArgs e)
-    {
-        App.Current.MainPage = new NavigationPage(new ExtendLeasePage());
     }
 }

@@ -16,6 +16,21 @@
         Route="MainPageMenu" />
     <ShellContent
         Title="Extend NFC-Chip Lease time"
-        ContentTemplate="{DataTemplate local:ExtendLeasePage}"
+        ContentTemplate="{DataTemplate local:CreateLeasePage}"
         Route="ExtendLeasePage" />
+
+    <ShellContent
+        Title="Check-in History"
+        ContentTemplate="{DataTemplate local:CheckInHistoryPage}"
+        Route="CheckInPage" />
+
+    <ShellContent
+        Title="Delete or disable"
+        ContentTemplate="{DataTemplate local:DisableNFCPage}"
+        Route="DisablePage" />
+
+    <ShellContent
+        Title="Take Picture"
+        ContentTemplate="{DataTemplate local:PictureModePage}"
+        Route="PictureModePage" />
 </Shell>

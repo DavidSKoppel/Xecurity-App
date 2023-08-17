@@ -15,9 +15,9 @@ namespace Xecurity_App.Platforms.Android
     [Service]
     public class AlertForegroundService : Service
     {
-        List<Temperature> exempt23Danger26 = new List<Temperature>();
-        List<Temperature> exemptTemperatures24 = new List<Temperature>();
-        List<Temperature> exemptHumidity = new List<Temperature>();
+        List<DangerTemps> exempt23Danger26 = new List<DangerTemps>();
+        List<DangerTemps> exemptTemperatures24 = new List<DangerTemps>();
+        List<DangerTemps> exemptHumidity = new List<DangerTemps>();
         HttpClient _client;
         private string NOTIFICATION_CHANNEL_ID = "1000";
         private int NOTIFICATION_ID = 1;
@@ -42,10 +42,10 @@ namespace Xecurity_App.Platforms.Android
             {
                 while (true)
                 {
-                    await Task.Delay(60000);
                     GetDangerousTemperaturesFromTheLast24Hours();
                     GetDangerousHumiditiesFromTheLast24Hours();
                     GetTemperaturesFromTheLastHour();
+                    await Task.Delay(60000);
                 }
             });
         }
@@ -62,12 +62,12 @@ namespace Xecurity_App.Platforms.Android
 
             if (response.IsSuccessStatusCode)
             {
-                List<Temperature> readings = JsonSerializer.Deserialize<List<Temperature>>(result);
+                List<DangerTemps> readings = JsonSerializer.Deserialize<List<DangerTemps>>(result);
                 foreach (var reading in readings)
                 {
-                    if (!exemptHumidity.Where(i => i.id == reading.id).Any())
+                    if (!exemptHumidity.Where(i => i.Id == reading.Id).Any())
                     {
-                        if (reading.humidity > 55)
+                        if (reading.Humidity > 55)
                         {
                             var request = new NotificationRequest
                             {
@@ -81,14 +81,14 @@ namespace Xecurity_App.Platforms.Android
                             await LocalNotificationCenter.Current.Show(request);
                             exemptHumidity.Add(reading);
                         }
-                        else if (reading.humidity < 45)
+                        else if (reading.Humidity < 45)
                         {
                             var request = new NotificationRequest
                             {
-                                NotificationId = 8008,
+                                NotificationId = 80085,
                                 Title = "Advarsel",
                                 Subtitle = "Serverrumnavn",
-                                Description = "For lav luftfugtighed i serverrum målt klokken " + reading.dateUploaded.Hour,
+                                Description = "For lav luftfugtighed i serverrum målt klokken " + reading.DateUploaded.Hour,
                                 BadgeNumber = 1,
                                 CategoryType = NotificationCategoryType.Alarm
                             };
@@ -111,19 +111,19 @@ namespace Xecurity_App.Platforms.Android
 
             if (response.IsSuccessStatusCode)
             {
-                List<Temperature> readings = JsonSerializer.Deserialize<List<Temperature>>(result);
-                foreach ( var reading in readings )
+                List<DangerTemps> readings = JsonSerializer.Deserialize<List<DangerTemps>>(result);
+                for (int f = readings.Count - 1; f >= 0; f--)
                 {
-                    if (exempt23Danger26.Where(i => i.id == reading.id).Any())
-                        readings.Remove(reading);
+                    if (exempt23Danger26.Where(i => i.Id == readings[f].Id).Any())
+                    readings.RemoveAt(f);
                 }
-                float min = readings.Min().temperature;
-                float max = readings.Max().temperature;
-                if (max >= min + 1.5)
+                DangerTemps highTemp = readings.MaxBy(t => t.Temperature);
+                DangerTemps lowTemp = readings.MinBy(t => t.Temperature);
+                if (highTemp.Temperature >= lowTemp.Temperature + 1.5)
                 {
                     var request = new NotificationRequest
                     {
-                        NotificationId = 8008,
+                        NotificationId = 8008135,
                         Title = "Advarsel",
                         Subtitle = "Serverrumnavn",
                         Description = "Temperaturen svinger meget i serverrum",
@@ -131,8 +131,8 @@ namespace Xecurity_App.Platforms.Android
                         CategoryType = NotificationCategoryType.Alarm
                     };
                     await LocalNotificationCenter.Current.Show(request);
-                    exemptTemperatures24.Add(readings.Min());
-                    exemptTemperatures24.Add(readings.Max());
+                    exemptTemperatures24.Add(highTemp);
+                    exemptTemperatures24.Add(lowTemp);
                 }
             }
         }
@@ -149,16 +149,16 @@ namespace Xecurity_App.Platforms.Android
 
             if (response.IsSuccessStatusCode)
             {
-                List<Temperature> readings = JsonSerializer.Deserialize<List<Temperature>>(result);
+                List<DangerTemps> readings = JsonSerializer.Deserialize<List<DangerTemps>>(result);
                 foreach (var reading in readings)
                 {
-                    if (!exempt23Danger26.Where(i => i.id == reading.id).Any())
+                    if (!exempt23Danger26.Where(i => i.Id == reading.Id).Any())
                     {
-                        if (reading.temperature > 26)
+                        if (reading.Temperature > 26)
                         {
                             var request = new NotificationRequest
                             {
-                                NotificationId = 8008,
+                                NotificationId = 800,
                                 Title = "Advarsel",
                                 Subtitle = "Serverrumnavn",
                                 Description = "For høje temperature i serverrum",
@@ -168,14 +168,14 @@ namespace Xecurity_App.Platforms.Android
                             await LocalNotificationCenter.Current.Show(request);
                             exempt23Danger26.Add(reading);
                         }
-                        else if (reading.temperature < 23)
+                        else if (reading.Temperature < 23)
                         {
                             var request = new NotificationRequest
                             {
-                                NotificationId = 8008,
+                                NotificationId = 800800,
                                 Title = "Advarsel",
                                 Subtitle = "Serverrumnavn",
-                                Description = "For lave temperature i serverrum målt klokken " + reading.dateUploaded.Hour,
+                                Description = "For lave temperature i serverrum målt klokken " + reading.DateUploaded.Hour,
                                 BadgeNumber = 1,
                                 CategoryType = NotificationCategoryType.Alarm
                             };
@@ -191,7 +191,5 @@ namespace Xecurity_App.Platforms.Android
         {
             return null;
         }
-
-
     }
 }

@@ -10,22 +10,31 @@
             HorizontalOptions="Center"/>
         <StackLayout Margin="2" Orientation="Horizontal">
             <Button
-                x:Name="Button"
-                Text="Login"
-                Clicked="Button_Clicked"
+                Text="Create/Lease Chip"
+                Clicked="CreateUpdateChip_Clicked"
                 HorizontalOptions="Center" />
             <Button
-                Text="Login"
-                Clicked="Extend_Lease_Button"
+                Text="Disable/Expire Chip"
+                Clicked="DisableChip_Clicked"
                 HorizontalOptions="Center" />
         </StackLayout>
         <StackLayout Margin="2" Orientation="Horizontal">
             <Button
-                Text="Login"
-                Clicked="Button_Clicked"
+                Text="Take Picture"
+                Clicked="ViewImage_Clicked"
                 HorizontalOptions="Center" />
             <Button
-                Text="Login"
+                Text="Livestream"
+                Clicked="ViewLivestream_Clicked"
+                HorizontalOptions="Center" />
+        </StackLayout>
+        <StackLayout Margin="2" Orientation="Horizontal">
+            <Button
+                Text="Login History"
+                Clicked="CheckHistory_Clicked"
+                HorizontalOptions="Center" />
+            <Button
+                Text="Bonus"
                 Clicked="Button_Clicked"
                 HorizontalOptions="Center" />
         </StackLayout>
