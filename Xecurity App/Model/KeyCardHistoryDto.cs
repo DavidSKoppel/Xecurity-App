@@ -9,6 +9,8 @@ namespace Xecurity_App.Model
 {
     public class KeyCardHistoryDto
     {
+        private string Image;
+
         [JsonPropertyName("id")]
         public int id { get; set; }
         [JsonPropertyName("dateUploaded")]

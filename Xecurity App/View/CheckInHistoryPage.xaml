@@ -40,8 +40,10 @@
                                VerticalOptions="End" />
                             <Image Grid.Row="2"
                                Grid.Column="2"
-                               Source="{Binding imageData}"
-                               VerticalOptions="End" />
+                               x:Name="imageUri"
+                               Source="{Binding image}"
+                               VerticalOptions="End">
+                            </Image>
                             <Label Grid.Row="1"
                                Grid.Column="1"
                                Text="{Binding user}"

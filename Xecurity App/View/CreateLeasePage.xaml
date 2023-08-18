@@ -20,11 +20,12 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0"
                                    Grid.Row="0"
-                           Text="{Binding id}"
-                           FontAttributes="Bold" />
+                                   Text="{Binding id}"
+                                   FontAttributes="Bold" />
                             <Label Grid.Row="1"
                            Grid.Column="0"
                            Text="{Binding password}"
@@ -38,6 +39,11 @@
                             <Label Grid.Row="0"
                            Grid.Column="1"
                            Text="{Binding active}"
+                           FontAttributes="Italic"
+                           VerticalOptions="End" />
+                            <Label Grid.Row="0"
+                           Grid.Column="3"
+                           Text="{Binding userId}"
                            FontAttributes="Italic"
                            VerticalOptions="End" />
                         </Grid>

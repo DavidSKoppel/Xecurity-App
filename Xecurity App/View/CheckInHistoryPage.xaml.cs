@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using Xecurity_App.Model;
@@ -7,10 +8,13 @@ namespace Xecurity_App.View;
 public partial class CheckInHistoryPage : ContentPage
 {
     HttpClient _client;
-    public ObservableCollection<KeyCardHistoryDto> KeyCardHistories { get; set; }
+    public List<KeyCardHistoryDto> KeyCards { get; set; }
+    public ObservableCollection<KeyCardHistoryObservable> KeyCardHistories { get; set; }
     public CheckInHistoryPage()
     {
-        KeyCardHistories = new ObservableCollection<KeyCardHistoryDto>();
+        KeyCards = new List<KeyCardHistoryDto>();
+        KeyCardHistories = new ObservableCollection<KeyCardHistoryObservable>();
+
         InitializeComponent();
         Task.Run(async () =>
         {
@@ -27,11 +31,24 @@ public partial class CheckInHistoryPage : ContentPage
                 List<KeyCardHistoryDto> nfc_chips = JsonSerializer.Deserialize<List<KeyCardHistoryDto>>(result);
                 foreach (var chip in nfc_chips)
                 {
-                    chip.image = "http://192.168.1.122:5500" + chip.image;
-                    KeyCardHistories.Add(chip);
+                    ImageSourceConverter converter = new ImageSourceConverter();
+                    var HttpImage = (UriImageSource)converter.ConvertFromString("http://192.168.1.122:5500" + chip.image);
+                    KeyCardHistories.Add( new KeyCardHistoryObservable 
+                    {
+                        addressName = chip.addressName,
+                        image = HttpImage.Uri,
+                        dateUploaded = chip.dateUploaded,
+                        id = chip.id,
+                        keycardId = chip.keycardId,
+                        locationName = chip.locationName,
+                        serverRoomName = chip.serverRoomName,
+                        status = chip.status,
+                        user = chip.user
+                    });
                 }
             }
         });
+
         BindingContext = this;
     }
 

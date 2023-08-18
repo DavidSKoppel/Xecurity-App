@@ -16,7 +16,7 @@ namespace Xecurity_App.Platforms.Android
     public class AlertForegroundService : Service
     {
         List<DangerTemps> exempt23Danger26 = new List<DangerTemps>();
-        List<DangerTemps> exemptTemperatures24 = new List<DangerTemps>();
+        List<DangerTemps> exemptTemperatures = new List<DangerTemps>();
         List<DangerTemps> exemptHumidity = new List<DangerTemps>();
         HttpClient _client;
         private string NOTIFICATION_CHANNEL_ID = "1000";
@@ -114,8 +114,10 @@ namespace Xecurity_App.Platforms.Android
                 List<DangerTemps> readings = JsonSerializer.Deserialize<List<DangerTemps>>(result);
                 for (int f = readings.Count - 1; f >= 0; f--)
                 {
-                    if (exempt23Danger26.Where(i => i.Id == readings[f].Id).Any())
-                    readings.RemoveAt(f);
+                    if (exemptTemperatures.Where(i => i.Id == readings[f].Id).Any())
+                    {
+                        readings.RemoveAt(f);
+                    }
                 }
                 DangerTemps highTemp = readings.MaxBy(t => t.Temperature);
                 DangerTemps lowTemp = readings.MinBy(t => t.Temperature);
@@ -131,8 +133,8 @@ namespace Xecurity_App.Platforms.Android
                         CategoryType = NotificationCategoryType.Alarm
                     };
                     await LocalNotificationCenter.Current.Show(request);
-                    exemptTemperatures24.Add(highTemp);
-                    exemptTemperatures24.Add(lowTemp);
+                    exemptTemperatures.Add(highTemp);
+                    exemptTemperatures.Add(lowTemp);
                 }
             }
         }

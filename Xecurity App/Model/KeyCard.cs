@@ -20,5 +20,8 @@ namespace Xecurity_App.Model
 
         [JsonPropertyName("active")]
         public bool active { get; set; }
+
+        [JsonPropertyName("userId")]
+        public int ?userId { get; set; }
     }
 }
