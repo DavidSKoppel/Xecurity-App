@@ -57,8 +57,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\CreateLeasePage.xaml.cs">
-	    <DependentUpon>CreateLeasePage.xaml</DependentUpon>
+	  <Compile Update="View\EditNFC.xaml.cs">
+	    <DependentUpon>EditNFC.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\NFCChips.xaml.cs">
+	    <DependentUpon>NFCChips.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -72,22 +75,13 @@
 	  <MauiXaml Update="View\CheckInHistoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\CreateLeasePage.xaml">
+	  <MauiXaml Update="View\NFCChips.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\DisableNFCPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\DisablePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\ExtendKeyCardPage.xaml">
+	  <MauiXaml Update="View\EditNFC.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\MainMenuPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\PictureModePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

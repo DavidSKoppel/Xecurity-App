@@ -30,6 +30,8 @@
                    x:Name="datepicker"
                    FontAttributes="Italic"
                    VerticalOptions="End" />
+            <Switch
+                   x:Name="switchModule"/>
             <Label Grid.Row="3"
                    x:Name="labelActive"
                    FontAttributes="Italic"
@@ -39,6 +41,6 @@
                    FontAttributes="Italic"
                    VerticalOptions="End" />
         </Grid>
-        <Button Text="Extend Lease" Clicked="Put_Button"></Button>
+        <Button Text="Update NFC Status" Clicked="Put_Button"></Button>
     </VerticalStackLayout>
 </ContentPage>

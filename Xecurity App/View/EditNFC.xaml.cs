@@ -16,7 +16,7 @@ public partial class ExtendKeyCardPage : ContentPage
 		labelId.Text = keyCard.id.ToString();
         labelPassword.Text = keyCard.password.ToString();
         datepicker.Date = keyCard.expDate;
-		labelActive.Text = keyCard.active.ToString();
+		switchModule.IsToggled = keyCard.active;
         labelUserId.Text = keyCard.userId.ToString();
     }
 
@@ -25,7 +25,7 @@ public partial class ExtendKeyCardPage : ContentPage
         _client = new HttpClient();
         var chipid = keyCard.id;
 
-        var putData = new KeyCard() { active = keyCard.active, password = keyCard.password, id = chipid, expDate = datepicker.Date, userId = keyCard.userId};
+        var putData = new KeyCard() { active = switchModule.IsToggled, password = keyCard.password, id = chipid, expDate = datepicker.Date, userId = keyCard.userId};
 
         var json = JsonSerializer.Serialize(putData);
         var data = new StringContent(json, Encoding.UTF8, "application/json");

@@ -24,13 +24,4 @@
         ContentTemplate="{DataTemplate local:CheckInHistoryPage}"
         Route="CheckInPage" />
 
-    <ShellContent
-        Title="Delete or disable"
-        ContentTemplate="{DataTemplate local:DisableNFCPage}"
-        Route="DisablePage" />
-
-    <ShellContent
-        Title="Take Picture"
-        ContentTemplate="{DataTemplate local:PictureModePage}"
-        Route="PictureModePage" />
 </Shell>

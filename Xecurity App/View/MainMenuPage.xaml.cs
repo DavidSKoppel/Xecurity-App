@@ -21,19 +21,8 @@ public partial class MainMenuPage : ContentPage
         await Navigation.PushModalAsync(new CreateLeasePage());
     }
 
-    private async void DisableChip_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushModalAsync(new DisableNFCPage());
-    }
-
-    private async void ViewImage_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushModalAsync(new PictureModePage());
-    }
-
     private async void ViewLivestream_Clicked(object sender, EventArgs e)
     {
-
         Uri uri = new Uri("http://192.168.1.116:8081");
         await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
     }
@@ -41,10 +30,5 @@ public partial class MainMenuPage : ContentPage
     private async void CheckHistory_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new CheckInHistoryPage());
-    }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-
     }
 }

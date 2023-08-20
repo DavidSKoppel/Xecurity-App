@@ -54,7 +54,8 @@ public partial class CheckInHistoryPage : ContentPage
 
     private async void ListView_KeyCardSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        KeyCard keyCard = (KeyCard)e.SelectedItem;
-        await Navigation.PushModalAsync(new ExtendKeyCardPage(keyCard));
+        KeyCardHistoryObservable keyCard = (KeyCardHistoryObservable)e.SelectedItem;
+        Uri uri = new Uri(keyCard.image.AbsoluteUri);
+        await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
     }
 }
