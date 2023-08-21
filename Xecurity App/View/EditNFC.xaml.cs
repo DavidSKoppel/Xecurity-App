@@ -13,7 +13,6 @@ public partial class ExtendKeyCardPage : ContentPage
 	{
 		InitializeComponent();
         keyCard = keyData;
-		labelId.Text = keyCard.id.ToString();
         labelPassword.Text = keyCard.password.ToString();
         datepicker.Date = keyCard.expDate;
 		switchModule.IsToggled = keyCard.active;

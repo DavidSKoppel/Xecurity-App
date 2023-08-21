@@ -53,6 +53,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Images\octagon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

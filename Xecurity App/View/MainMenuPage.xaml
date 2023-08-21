@@ -2,23 +2,44 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xecurity_App.View.MainMenuPage"
-             Title="MainMenuPage">
+             Title="Main Menu">
     <VerticalStackLayout>
-        <StackLayout Margin="2" Orientation="Horizontal">
-            <Button
-                Text="Edit/Disable Chip"
-                Clicked="CreateUpdateChip_Clicked"
-                HorizontalOptions="Center" />
-            <Button
-                Text="Livestream"
-                Clicked="ViewLivestream_Clicked"
-                HorizontalOptions="Center" />
-        </StackLayout>
-        <StackLayout Margin="2" Orientation="Horizontal">
-            <Button
-                Text="Login History"
-                Clicked="CheckHistory_Clicked"
-                HorizontalOptions="Center" />
-        </StackLayout>
+        <Image WidthRequest="300" Margin="20" Source="logo.png"/>
+        <Grid HeightRequest="130">
+            <Label HorizontalOptions="Center" Margin="30" FontSize="30">
+                Hello User
+            </Label>
+        </Grid>
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+            <Grid Grid.Row="0" Margin="0,0,-40,0">
+                <Image Source="octagon.png"/>
+                <Button
+                    x:Name="chipsButton"
+                    TextColor="Black"
+                    Background="#00000000"
+                    Text="Edit/Disable Chip"
+                    IsEnabled="False"
+                    Clicked="CreateUpdateChip_Clicked"
+                    HorizontalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="2" Margin="-40,0,0,0">
+                <Image Source="octagon.png"/>
+                <Button
+                    Text="Livestream"
+                    TextColor="Black"
+                    Background="#00000000"
+                    Clicked="ViewLivestream_Clicked"
+                    HorizontalOptions="Center" />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,0,0">
+                <Image Source="octagon.png"/>
+                <Button
+                    Text="Login History"
+                    TextColor="Black"
+                    Background="#00000000"
+                    Clicked="CheckHistory_Clicked"
+                    HorizontalOptions="Center" />
+            </Grid>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -14,7 +14,7 @@ namespace Xecurity_App.Model
         public string status { get; set; }
         public Uri image { get; set; }
         public string user { get; set; }
-        public int keycardId { get; set; }
+        public int keyCardId { get; set; }
         public string serverRoomName { get; set; }
         public string locationName { get; set; }
         public string addressName { get; set; }

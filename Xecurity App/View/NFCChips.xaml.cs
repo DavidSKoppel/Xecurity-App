@@ -12,7 +12,9 @@ public partial class CreateLeasePage :ContentPage
     {
         KeyCards = new ObservableCollection<KeyCard>();
 		InitializeComponent();
-		Task.Run(async () =>
+
+        KeyCards.Add(new KeyCard{ id = 1, active = true, expDate = DateTime.Now, password = "1234", userId = 1});
+        Task.Run(async () =>
 		{
             _client = new HttpClient();
 

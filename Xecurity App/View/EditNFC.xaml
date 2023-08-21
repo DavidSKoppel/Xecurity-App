@@ -5,42 +5,33 @@
              Title="ExtendKeyCardPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Margin="0,20,0,0"
+            Text="Edit NFC Key"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Grid Padding="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-                   x:Name="labelId"
-                   FontAttributes="Bold" />
-            <Label Grid.Row="1"
-                   x:Name="labelPassword"
-                   FontAttributes="Italic"
-                   VerticalOptions="End" />
-            <DatePicker Grid.Row="2"
-                   x:Name="datepicker"
-                   FontAttributes="Italic"
-                   VerticalOptions="End" />
-            <Switch
-                   x:Name="switchModule"/>
-            <Label Grid.Row="3"
-                   x:Name="labelActive"
-                   FontAttributes="Italic"
-                   VerticalOptions="End" />
-            <Label Grid.Row="4"
-                   x:Name="labelUserId"
-                   FontAttributes="Italic"
-                   VerticalOptions="End" />
-        </Grid>
-        <Button Text="Update NFC Status" Clicked="Put_Button"></Button>
+        <StackLayout Margin="20">
+            <Label>
+                Keycard Password
+            </Label>
+            <Label x:Name="labelPassword"
+                   FontAttributes="Italic"/>
+            <Label>
+                
+            </Label>
+            <Label>
+                Enable/Disable Card?
+            </Label>
+            <Switch x:Name="switchModule"/>
+            <Label>
+                Change Expiration Date?
+            </Label>
+            <DatePicker
+                    x:Name="datepicker"
+                    FontAttributes="Italic" HorizontalOptions="End"/>
+            <Grid HeightRequest="420">
+
+            </Grid>
+            <Button Padding="20" Text="Update NFC Status" Clicked="Put_Button"></Button>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

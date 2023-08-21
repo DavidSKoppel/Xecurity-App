@@ -5,47 +5,46 @@
              Title="CreateLeasePage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="NFC Keys"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <ListView ItemsSource="{Binding KeyCards}" ItemSelected="ListView_KeyCardSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0"
-                                   Grid.Row="0"
-                                   Text="{Binding id}"
-                                   FontAttributes="Bold" />
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*,*,*">
+                            <Label FontAttributes="Bold">
+                                Keycard Password
+                            </Label>
                             <Label Grid.Row="1"
-                           Grid.Column="0"
-                           Text="{Binding password}"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
+                                   Grid.Column="0"
+                                   Text="{Binding password}"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                            <Label Grid.Row="0" Grid.Column="2" FontAttributes="Bold">
+                                Active
+                            </Label>
                             <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding expDate}"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
-                            <Label Grid.Row="0"
-                           Grid.Column="1"
-                           Text="{Binding active}"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
-                            <Label Grid.Row="0"
-                           Grid.Column="3"
-                           Text="{Binding userId}"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
+                                   Grid.Column="2"
+                                   Text="{Binding active}"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                            <Label Grid.Column="1" Grid.Row="0" FontAttributes="Bold">
+                                User Name
+                            </Label>
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding userId}"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                            <Label Grid.Row="0" Grid.Column="3" FontAttributes="Bold">
+                                Expiration
+                            </Label>
+                            <Label Grid.Row="1"
+                                   Grid.Column="3"
+                                   Text="{Binding expDate}"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

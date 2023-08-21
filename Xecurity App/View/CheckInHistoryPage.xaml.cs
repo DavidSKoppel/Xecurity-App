@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using Xecurity_App.Model;
@@ -16,6 +15,32 @@ public partial class CheckInHistoryPage : ContentPage
         KeyCardHistories = new ObservableCollection<KeyCardHistoryObservable>();
 
         InitializeComponent();
+
+        ImageSourceConverter converter = new ImageSourceConverter();
+        KeyCardHistories.Add(new KeyCardHistoryObservable
+        {
+            addressName = "Sømarken",
+            image = new Uri("https://www.cnet.com/a/img/resize/0052392ffa339a707dcc4156ca0d9c1a7ef1abd5/hub/2021/11/03/3c2a7d79-770e-4cfa-9847-66b3901fb5d7/c09.jpg?auto=webp&fit=crop&height=900&width=1200", UriKind.Absolute),
+            dateUploaded = DateTime.Now,
+            id = 1,
+            keyCardId = 11,
+            locationName = "Ollerup",
+            serverRoomName = "Xervices",
+            status = "Denied",
+            user = "Doge"
+        });
+        KeyCardHistories.Add(new KeyCardHistoryObservable
+        {
+            addressName = "Sømarken",
+            image = new Uri("https://www.cnet.com/a/img/resize/0052392ffa339a707dcc4156ca0d9c1a7ef1abd5/hub/2021/11/03/3c2a7d79-770e-4cfa-9847-66b3901fb5d7/c09.jpg?auto=webp&fit=crop&height=900&width=1200", UriKind.Absolute),
+            dateUploaded = DateTime.Now,
+            id = 2,
+            keyCardId = 11,
+            locationName = "Ollerup",
+            serverRoomName = "Xervices",
+            status = "Success",
+            user = "Doge"
+        });
         Task.Run(async () =>
         {
             _client = new HttpClient();
@@ -39,7 +64,7 @@ public partial class CheckInHistoryPage : ContentPage
                         image = HttpImage.Uri,
                         dateUploaded = chip.dateUploaded,
                         id = chip.id,
-                        keycardId = chip.keycardId,
+                        keyCardId = chip.keycardId,
                         locationName = chip.locationName,
                         serverRoomName = chip.serverRoomName,
                         status = chip.status,
@@ -57,5 +82,6 @@ public partial class CheckInHistoryPage : ContentPage
         KeyCardHistoryObservable keyCard = (KeyCardHistoryObservable)e.SelectedItem;
         Uri uri = new Uri(keyCard.image.AbsoluteUri);
         await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+
     }
 }

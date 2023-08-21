@@ -4,9 +4,16 @@ namespace Xecurity_App.View;
 
 public partial class MainMenuPage : ContentPage
 {
-	public MainMenuPage()
+    public MainMenuPage() 
+    {
+        InitializeComponent();
+        chipsButton.IsEnabled = true;
+        //chipsButton.TextColor = Color.FromHex("999999");
+    }
+    public MainMenuPage(string userLogin)
 	{
 		InitializeComponent();
+        chipsButton.IsEnabled = true;
         Task.Run( () =>
         {
 #if ANDROID
