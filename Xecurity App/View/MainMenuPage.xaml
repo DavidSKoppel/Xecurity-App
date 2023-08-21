@@ -4,10 +4,6 @@
              x:Class="Xecurity_App.View.MainMenuPage"
              Title="MainMenuPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"/>
         <StackLayout Margin="2" Orientation="Horizontal">
             <Button
                 Text="Edit/Disable Chip"

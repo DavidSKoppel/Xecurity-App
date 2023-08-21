@@ -7,7 +7,7 @@ public partial class MainMenuPage : ContentPage
 	public MainMenuPage()
 	{
 		InitializeComponent();
-        Task.Run(async () =>
+        Task.Run( () =>
         {
 #if ANDROID
             Android.Content.Intent intent = new Android.Content.Intent(Android.App.Application.Context, typeof(Platforms.Android.AlertForegroundService));

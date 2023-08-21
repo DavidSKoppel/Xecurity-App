@@ -20,7 +20,8 @@ namespace Xecurity_App.Platforms.Android
         List<DangerTemps> exemptHumidity = new List<DangerTemps>();
         HttpClient _client;
         private string NOTIFICATION_CHANNEL_ID = "1000";
-        private int NOTIFICATION_ID = 1;
+        private int NOTIFICATION_ID = 1; 
+        private string NOTIFICATION_CHANNEL_NAME = "notification";
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
@@ -30,6 +31,13 @@ namespace Xecurity_App.Platforms.Android
 
         private void startForegroundService()
         {
+            var notifcationManager = GetSystemService(Context.NotificationService) as NotificationManager;
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                //createNotificationChannel(notifcationManager);
+            }
+
             var notification = new AndroidX.Core.App.NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
             notification.SetAutoCancel(false);
             notification.SetOngoing(true);
@@ -37,7 +45,7 @@ namespace Xecurity_App.Platforms.Android
             notification.SetContentTitle("ForegroundService");
             notification.SetContentText("Foreground Service is running");
             StartForeground(NOTIFICATION_ID, notification.Build());
-
+            
             Task.Run(async () =>
             {
                 while (true)
@@ -48,6 +56,13 @@ namespace Xecurity_App.Platforms.Android
                     await Task.Delay(60000);
                 }
             });
+        }
+
+        private void createNotificationChannel(NotificationManager notificationMnaManager)
+        {
+            var channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME,
+            NotificationImportance.Low);
+            notificationMnaManager.CreateNotificationChannel(channel);
         }
 
         private async void GetDangerousHumiditiesFromTheLast24Hours()
