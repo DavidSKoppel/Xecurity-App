@@ -16,7 +16,6 @@ public partial class ExtendKeyCardPage : ContentPage
         labelPassword.Text = keyCard.password.ToString();
         datepicker.Date = keyCard.expDate;
 		switchModule.IsToggled = keyCard.active;
-        labelUserId.Text = keyCard.userId.ToString();
     }
 
     private async void Put_Button(object sender, EventArgs e)

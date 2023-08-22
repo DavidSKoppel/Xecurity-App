@@ -28,7 +28,7 @@
             <DatePicker
                     x:Name="datepicker"
                     FontAttributes="Italic" HorizontalOptions="End"/>
-            <Grid HeightRequest="420">
+            <Grid HeightRequest="390">
 
             </Grid>
             <Button Padding="20" Text="Update NFC Status" Clicked="Put_Button"></Button>
